@@ -23,9 +23,15 @@ const listen_div = document.createElement("div");
 listen_div.innerHTML = `You have made ${num_steak} steaks!`;
 app.append(listen_div);
 
-button.onclick = () => {
+function createSteak() {
     num_steak = increaseScore(num_steak);
     listen_div.innerHTML = `You have made ${num_steak} steaks!`;
 }
+
+button.onclick = () => {
+    createSteak();
+}
+
 app.append(button);
 
+window.setInterval(createSteak, 1000);
