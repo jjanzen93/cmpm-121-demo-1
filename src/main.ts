@@ -17,6 +17,7 @@ const steak_button = document.createElement("button");
 steak_button.innerHTML = "&#129385";
 app.append(steak_button);
 
+let growth_factor = 0;
 const upgrade_cost = 10;
 const upgrade_button = document.createElement("button");
 upgrade_button.innerHTML = `Upgrade (Costs ${upgrade_cost} Steaks)`
@@ -40,6 +41,7 @@ steak_button.onclick = () => {
 
 upgrade_button.onclick = () => {
     num_steak -= upgrade_cost;
+    growth_factor++;
 }
 
 
@@ -47,7 +49,7 @@ let last_time: number = performance.now();
 
 function update(timestamp: number) {
     const time_elapsed: number = timestamp - last_time;
-    createSteak((time_elapsed/1000));
+    createSteak((time_elapsed/1000)*growth_factor);
     last_time = timestamp;
     if (num_steak >= upgrade_cost) {
         upgrade_button.disabled = false;
