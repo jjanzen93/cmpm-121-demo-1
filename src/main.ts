@@ -46,6 +46,7 @@ app.append(c_upgrade_button);
 c_upgrade_button.disabled = true;
 
 
+
 const num_div = document.createElement("div");
 num_div.innerHTML = `You have made ${num_steak} steaks!`;
 app.append(num_div);
