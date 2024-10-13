@@ -22,10 +22,21 @@ steak_button.innerHTML = "&#129385";
 app.append(steak_button);
 app.append(document.createElement("br"));
 
+const num_div = document.createElement("div");
+num_div.innerHTML = `You have made ${num_steak} steaks!`;
+app.append(num_div);
+
+// display current growth rate
+const growth_div = document.createElement("div");
+growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+app.append(growth_div);
+app.append(document.createElement("br"));
+
 interface Item {
     name: string,
     cost: number,
-    rate: number
+    rate: number,
+    desc: string
 };
 
 interface Upgrade {
@@ -34,9 +45,11 @@ interface Upgrade {
 };
   
 const availableItems : Item[] = [
-    {name: "Buy Cow Farm", cost: 10, rate: 0.1},
-    {name: "Upgrade Slaughterhouse", cost: 100, rate: 2},
-    {name: "Build Packing Facility", cost: 1000, rate: 50}
+    {name: "Buy Cow Farm", cost: 10, rate: 0.1, desc: "Purchase a nice cow farm in the totally non-fictional land of Wyoming."},
+    {name: "Upgrade Slaughterhouse", cost: 100, rate: 2, desc: "Sharpen those blades and increase production!"},
+    {name: "Build Packing Facility", cost: 1000, rate: 50, desc: "Construct a monolith to consumption and glutto- I mean the end of world hunger!"},
+    {name: "Produce Carnivore Diet Advertisement", cost: 10000, rate: 1000, desc: "Get kids excited about eating steak-- and ONLY steak."},
+    {name: "Fuel the Cowpocalypse", cost: 100000, rate: 20000, desc: "Fund the warring cow tribes. The more dead soldiers, the more meat to sell."}
 ];
 
 const buttons : Upgrade[] = [];
@@ -48,22 +61,19 @@ for (const element of availableItems) {
     upgrade.button.innerHTML = `${element.name} (You have ${upgrade.amount}.)`;
     app.append(upgrade.button);
     app.append(document.createElement("br"));
+    const description = document.createElement("div");
+    description.innerHTML = element.desc;
+    app.append(description);
+    app.append(document.createElement("br"));
     upgrade.button.disabled = true;
 };
 
-const num_div = document.createElement("div");
-num_div.innerHTML = `You have made ${num_steak} steaks!`;
-app.append(num_div);
+
 
 function createSteak(current_increase: number) {
     num_steak = increaseScore(num_steak, current_increase);
     num_div.innerHTML = `You have made ${num_steak.toFixed(1)} steaks!`;
 };
-
-// display current growth rate
-const growth_div = document.createElement("div");
-growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
-app.append(growth_div);
 
 // steak button listener
 steak_button.onclick = () => {
