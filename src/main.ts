@@ -14,7 +14,7 @@ function increaseScore(score: number, increase: number) {
     return score + increase;
 }
 let growth_factor = 0;
-let num_steak: number = 100000;
+let num_steak: number = 0;
 
 // make steak button
 const steak_button = document.createElement("button");
@@ -45,7 +45,7 @@ c_upgrade_button.innerHTML = `Upgrade Packing Facility (Costs ${c_upgrade_cost} 
 app.append(c_upgrade_button);
 c_upgrade_button.disabled = true;
 
-// display current steaks
+
 const num_div = document.createElement("div");
 num_div.innerHTML = `You have made ${num_steak} steaks!`;
 app.append(num_div);
