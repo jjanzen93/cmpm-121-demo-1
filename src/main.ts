@@ -20,6 +20,7 @@ let num_steak: number = 10000;
 const steak_button = document.createElement("button");
 steak_button.innerHTML = "&#129385";
 app.append(steak_button);
+app.append(document.createElement("br"));
 
 // upgrade A information
 let a_upgrade_cost = 10;
@@ -27,6 +28,7 @@ const a_growth_increase = 0.1;
 const a_upgrade_button = document.createElement("button");
 a_upgrade_button.innerHTML = `Upgrade Cow Feed (Costs ${a_upgrade_cost} Steaks)`;
 app.append(a_upgrade_button);
+app.append(document.createElement("br"));
 a_upgrade_button.disabled = true;
 
 // upgrade B information
@@ -35,6 +37,7 @@ const b_growth_increase = 2;
 const b_upgrade_button = document.createElement("button");
 b_upgrade_button.innerHTML = `Upgrade Meat Quality (Costs ${b_upgrade_cost} Steaks)`;
 app.append(b_upgrade_button);
+app.append(document.createElement("br"));
 b_upgrade_button.disabled = true;
 
 // upgrade C information
@@ -43,6 +46,7 @@ const c_growth_increase = 50;
 const c_upgrade_button = document.createElement("button");
 c_upgrade_button.innerHTML = `Upgrade Packing Facility (Costs ${c_upgrade_cost} Steaks)`;
 app.append(c_upgrade_button);
+app.append(document.createElement("br"));
 c_upgrade_button.disabled = true;
 
 
