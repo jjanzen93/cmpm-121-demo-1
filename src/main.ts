@@ -14,7 +14,7 @@ function increaseScore(score: number, increase: number) {
     return score + increase;
 }
 let growth_factor = 0;
-let num_steak: number = 0;
+let num_steak: number = 10000;
 
 // make steak button
 const steak_button = document.createElement("button");
@@ -22,26 +22,26 @@ steak_button.innerHTML = "&#129385";
 app.append(steak_button);
 
 // upgrade A information
-const a_upgrade_cost = 10;
+let a_upgrade_cost = 10;
 const a_growth_increase = 0.1;
 const a_upgrade_button = document.createElement("button");
-a_upgrade_button.innerHTML = `Upgrade Cow Feed (Costs ${a_upgrade_cost} Steaks)`
+a_upgrade_button.innerHTML = `Upgrade Cow Feed (Costs ${a_upgrade_cost} Steaks)`;
 app.append(a_upgrade_button);
 a_upgrade_button.disabled = true;
 
 // upgrade B information
-const b_upgrade_cost = 100;
+let b_upgrade_cost = 100;
 const b_growth_increase = 2;
 const b_upgrade_button = document.createElement("button");
-b_upgrade_button.innerHTML = `Upgrade Meat Quality (Costs ${b_upgrade_cost} Steaks)`
+b_upgrade_button.innerHTML = `Upgrade Meat Quality (Costs ${b_upgrade_cost} Steaks)`;
 app.append(b_upgrade_button);
 b_upgrade_button.disabled = true;
 
 // upgrade C information
-const c_upgrade_cost = 1000;
+let c_upgrade_cost = 1000;
 const c_growth_increase = 50;
 const c_upgrade_button = document.createElement("button");
-c_upgrade_button.innerHTML = `Upgrade Packing Facility (Costs ${c_upgrade_cost} Steaks)`
+c_upgrade_button.innerHTML = `Upgrade Packing Facility (Costs ${c_upgrade_cost} Steaks)`;
 app.append(c_upgrade_button);
 c_upgrade_button.disabled = true;
 
@@ -68,18 +68,24 @@ steak_button.onclick = () => {
 
 a_upgrade_button.onclick = () => {
     num_steak -= a_upgrade_cost;
+    a_upgrade_cost *= 1.15;
+    a_upgrade_button.innerHTML = `Upgrade Cow Feed (Costs ${a_upgrade_cost} Steaks)`;
     growth_factor += a_growth_increase;
     growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
 }
 
 b_upgrade_button.onclick = () => {
     num_steak -= b_upgrade_cost;
+    b_upgrade_cost *= 1.15;
+    b_upgrade_button.innerHTML = `Upgrade Meat Quality (Costs ${b_upgrade_cost} Steaks)`;
     growth_factor += b_growth_increase;
     growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
 }
 
 c_upgrade_button.onclick = () => {
     num_steak -= c_upgrade_cost;
+    c_upgrade_cost *= 1.15;
+    c_upgrade_button.innerHTML = `Upgrade Packing Facility (Costs ${c_upgrade_cost} Steaks)`;
     growth_factor += c_growth_increase;
     growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
 }
