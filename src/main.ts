@@ -15,6 +15,7 @@ function increaseScore(score: number, increase: number) {
 }
 let growth_factor = 0;
 let num_steak: number = 0;
+let skip_available = true;
 
 // make steak button
 const steak_button = document.createElement("button");
@@ -69,7 +70,6 @@ for (const element of availableItems) {
 };
 
 
-
 function createSteak(current_increase: number) {
     num_steak = increaseScore(num_steak, current_increase);
     num_div.innerHTML = `You have made ${num_steak.toFixed(1)} steaks!`;
@@ -77,6 +77,7 @@ function createSteak(current_increase: number) {
 
 // steak button listener
 steak_button.onclick = () => {
+    skip_available = false;
     createSteak(1);
 };
 
@@ -116,5 +117,61 @@ function update(timestamp: number) {
     );
     window.requestAnimationFrame(update);
 };
+
+// 
+
+window.addEventListener('keydown', (e) => {
+    if ((e as KeyboardEvent).key === 'Enter' && skip_available) {
+        const dhruv_prompt: string | null = prompt("Enter password", "Type here")
+            if (dhruv_prompt === "poo") {
+                skip_available = false;
+                let counter = 0;
+                while (counter < 103) {
+                    counter++;
+                    availableItems[0].cost *= 1.15;
+                    buttons[0].amount++;
+                    buttons[0].button.innerHTML = `${availableItems[0].name} (You have ${buttons[0].amount}.)`;
+                    growth_factor += availableItems[0].rate;
+                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                }
+                counter = 0;
+                while (counter < 97) {
+                    counter++;
+                    availableItems[1].cost *= 1.15;
+                    buttons[1].amount++;
+                    buttons[1].button.innerHTML = `${availableItems[1].name} (You have ${buttons[1].amount}.)`;
+                    growth_factor += availableItems[1].rate;
+                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                }
+                counter = 0;
+                while (counter < 91) {
+                    counter++;
+                    availableItems[2].cost *= 1.15;
+                    buttons[2].amount++;
+                    buttons[2].button.innerHTML = `${availableItems[2].name} (You have ${buttons[2].amount}.)`;
+                    growth_factor += availableItems[2].rate;
+                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                }
+                counter = 0;
+                while (counter < 89) {
+                    counter++;
+                    availableItems[3].cost *= 1.15;
+                    buttons[3].amount++;
+                    buttons[3].button.innerHTML = `${availableItems[3].name} (You have ${buttons[3].amount}.)`;
+                    growth_factor += availableItems[3].rate;
+                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                }
+                counter = 0;
+                while (counter < 84) {
+                    counter++;
+                    availableItems[4].cost *= 1.15;
+                    buttons[4].amount++;
+                    buttons[4].button.innerHTML = `${availableItems[4].name} (You have ${buttons[4].amount}.)`;
+                    growth_factor += availableItems[4].rate;
+                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                }
+            }
+        }
+}); 
 
 window.requestAnimationFrame(update);
