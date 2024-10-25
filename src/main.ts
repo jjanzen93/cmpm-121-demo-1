@@ -118,7 +118,15 @@ function update(timestamp: number) {
     window.requestAnimationFrame(update);
 };
 
-// 
+// roommate skip
+
+function roommateSkip(button_index:number) {
+    availableItems[button_index].cost *= 1.15;
+    buttons[button_index].amount++;
+    buttons[button_index].button.innerHTML = `${availableItems[button_index].name} (You have ${buttons[button_index].amount}.)`;
+    growth_factor += availableItems[button_index].rate;
+    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+}
 
 window.addEventListener('keydown', (e) => {
     if ((e as KeyboardEvent).key === 'Enter' && skip_available) {
@@ -128,47 +136,27 @@ window.addEventListener('keydown', (e) => {
                 let counter = 0;
                 while (counter < 103) {
                     counter++;
-                    availableItems[0].cost *= 1.15;
-                    buttons[0].amount++;
-                    buttons[0].button.innerHTML = `${availableItems[0].name} (You have ${buttons[0].amount}.)`;
-                    growth_factor += availableItems[0].rate;
-                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                    roommateSkip(0);
                 }
                 counter = 0;
                 while (counter < 97) {
                     counter++;
-                    availableItems[1].cost *= 1.15;
-                    buttons[1].amount++;
-                    buttons[1].button.innerHTML = `${availableItems[1].name} (You have ${buttons[1].amount}.)`;
-                    growth_factor += availableItems[1].rate;
-                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                    roommateSkip(1);
                 }
                 counter = 0;
                 while (counter < 91) {
                     counter++;
-                    availableItems[2].cost *= 1.15;
-                    buttons[2].amount++;
-                    buttons[2].button.innerHTML = `${availableItems[2].name} (You have ${buttons[2].amount}.)`;
-                    growth_factor += availableItems[2].rate;
-                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                    roommateSkip(2);
                 }
                 counter = 0;
                 while (counter < 89) {
                     counter++;
-                    availableItems[3].cost *= 1.15;
-                    buttons[3].amount++;
-                    buttons[3].button.innerHTML = `${availableItems[3].name} (You have ${buttons[3].amount}.)`;
-                    growth_factor += availableItems[3].rate;
-                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                    roommateSkip(3);
                 }
                 counter = 0;
                 while (counter < 84) {
                     counter++;
-                    availableItems[4].cost *= 1.15;
-                    buttons[4].amount++;
-                    buttons[4].button.innerHTML = `${availableItems[4].name} (You have ${buttons[4].amount}.)`;
-                    growth_factor += availableItems[4].rate;
-                    growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
+                    roommateSkip(4);
                 }
             }
         }
