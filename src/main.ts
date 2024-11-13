@@ -100,13 +100,7 @@ buttons.forEach(
 
 let last_time: number = performance.now();
 
-function update(timestamp: number) {
-    const time_elapsed: number = timestamp - last_time;
-    // update score by growth rate
-    createSteak((time_elapsed/1000)*growth_factor);
-    // update time
-    last_time = timestamp;
-    // check item affordability
+function updateItemAffordability() {
     buttons.forEach(
         (current_button) => {
             const current_item = availableItems[buttons.indexOf(current_button)];
@@ -117,6 +111,15 @@ function update(timestamp: number) {
             };
         }
     );
+}
+
+function update(timestamp: number) {
+    const time_elapsed: number = timestamp - last_time;
+    // update score by growth rate
+    createSteak((time_elapsed/1000)*growth_factor);
+    // update time
+    last_time = timestamp;
+    updateItemAffordability();
     window.requestAnimationFrame(update);
 };
 
