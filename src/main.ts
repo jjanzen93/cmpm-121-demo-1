@@ -16,7 +16,8 @@ function increaseScore(score: number, increase: number) {
 let growth_factor = 0;
 let num_steak: number = 0;
 let skip_available = true;
-const skip_values = [103, 97, 91, 89, 84];
+const SKIP_VALUES = [103, 97, 91, 89, 84];
+const COST_INCREMENT = 1.15;
 
 // make steak button
 const steak_button = document.createElement("button");
@@ -88,7 +89,7 @@ buttons.forEach(
         const current_item = availableItems[buttons.indexOf(current_button)];
         current_button.button.onclick = () => {
             num_steak -= current_item.cost;
-            current_item.cost *= 1.15;
+            current_item.cost *= COST_INCREMENT;
             current_button.amount++;
             current_button.button.innerHTML = `${current_item.name} (You have ${current_button.amount}.)`;
             growth_factor += current_item.rate;
@@ -122,7 +123,7 @@ function update(timestamp: number) {
 // roommate skip
 
 function skipItem(button_index:number) {
-    availableItems[button_index].cost *= 1.15;
+    availableItems[button_index].cost *= COST_INCREMENT;
     buttons[button_index].amount++;
     buttons[button_index].button.innerHTML = `${availableItems[button_index].name} (You have ${buttons[button_index].amount}.)`;
     growth_factor += availableItems[button_index].rate;
@@ -131,7 +132,7 @@ function skipItem(button_index:number) {
 
 function skipLoop() {
     buttons.forEach( (current_button) => {
-        for (let i = 0; i < skip_values[buttons.indexOf(current_button)]; i++) {
+        for (let i = 0; i < SKIP_VALUES[buttons.indexOf(current_button)]; i++) {
             skipItem(buttons.indexOf(current_button))
         }
     })
