@@ -22,6 +22,11 @@ const COST_INCREMENT = 1.15;
 // make steak button
 const steak_button = document.createElement("button");
 steak_button.innerHTML = "&#129385";
+steak_button.style.fontSize = "100px";
+steak_button.style.borderRadius = "50%";
+steak_button.style.width = "250px";
+steak_button.style.height = "250px";
+steak_button.style.padding = "0.6em 0.6em";
 app.append(steak_button);
 app.append(document.createElement("br"));
 
@@ -61,7 +66,7 @@ const buttons : Upgrade[] = [];
 for (const element of availableItems) {
     const upgrade : Upgrade = {button: document.createElement("button"), amount: 0};
     buttons.push(upgrade);
-    upgrade.button.innerHTML = `${element.name} (You have ${upgrade.amount}.)`;
+    upgrade.button.innerHTML = `${element.name} (This currently costs ${element.cost.toFixed(2)} steaks. You have ${upgrade.amount}.)`;
     app.append(upgrade.button);
     app.append(document.createElement("br"));
     const description = document.createElement("div");
@@ -91,7 +96,7 @@ buttons.forEach(
             num_steak -= current_item.cost;
             current_item.cost *= COST_INCREMENT;
             current_button.amount++;
-            current_button.button.innerHTML = `${current_item.name} (You have ${current_button.amount}.)`;
+            current_button.button.innerHTML = `${current_item.name} (This currently costs ${current_item.cost.toFixed(2)} steaks. You have ${current_button.amount}.)`;
             growth_factor += current_item.rate;
             growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
         };
@@ -128,7 +133,7 @@ function update(timestamp: number) {
 function skipItem(button_index:number) {
     availableItems[button_index].cost *= COST_INCREMENT;
     buttons[button_index].amount++;
-    buttons[button_index].button.innerHTML = `${availableItems[button_index].name} (You have ${buttons[button_index].amount}.)`;
+    buttons[button_index].button.innerHTML = `${availableItems[button_index].name} (This currently costs ${availableItems[button_index].cost.toFixed(2)} steaks. You have ${buttons[button_index].amount}.)`;
     growth_factor += availableItems[button_index].rate;
     growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
 }
