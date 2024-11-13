@@ -16,6 +16,7 @@ function increaseScore(score: number, increase: number) {
 let growth_factor = 0;
 let num_steak: number = 0;
 let skip_available = true;
+const skip_values = [103, 97, 91, 89, 84];
 
 // make steak button
 const steak_button = document.createElement("button");
@@ -120,7 +121,7 @@ function update(timestamp: number) {
 
 // roommate skip
 
-function roommateSkip(button_index:number) {
+function skipItem(button_index:number) {
     availableItems[button_index].cost *= 1.15;
     buttons[button_index].amount++;
     buttons[button_index].button.innerHTML = `${availableItems[button_index].name} (You have ${buttons[button_index].amount}.)`;
@@ -128,36 +129,20 @@ function roommateSkip(button_index:number) {
     growth_div.innerHTML = `${growth_factor.toFixed(1)} steaks/sec`;
 }
 
+function skipLoop() {
+    buttons.forEach( (current_button) => {
+        for (let i = 0; i < skip_values[buttons.indexOf(current_button)]; i++) {
+            skipItem(buttons.indexOf(current_button))
+        }
+    })
+}
+
 window.addEventListener('keydown', (e) => {
     if ((e as KeyboardEvent).key === 'Enter' && skip_available) {
-        const dhruv_prompt: string | null = prompt("Enter password", "Type here")
-            if (dhruv_prompt === "poo") {
+        const password_prompt: string | null = prompt("Enter password", "Type here")
+            if (password_prompt === "poo") {
                 skip_available = false;
-                let counter = 0;
-                while (counter < 103) {
-                    counter++;
-                    roommateSkip(0);
-                }
-                counter = 0;
-                while (counter < 97) {
-                    counter++;
-                    roommateSkip(1);
-                }
-                counter = 0;
-                while (counter < 91) {
-                    counter++;
-                    roommateSkip(2);
-                }
-                counter = 0;
-                while (counter < 89) {
-                    counter++;
-                    roommateSkip(3);
-                }
-                counter = 0;
-                while (counter < 84) {
-                    counter++;
-                    roommateSkip(4);
-                }
+                skipLoop();
             }
         }
 }); 
